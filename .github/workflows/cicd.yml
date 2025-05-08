@@ -2,7 +2,7 @@ name: Build and Push to ECR
 on:
   push:
     branches: [main]
-
+    paths: ['index.html']
 env:
   AWS_REGION: ap-northeast-1
   ECR_REPOSITORY: app-repo
