@@ -6,8 +6,8 @@ on:
     tags:
       - '*'
 env:
-  AWS_REGION: ap-northeast-2
-  ECR_REPOSITORY: plani-api-repo
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: app-repo
 
 jobs:
   build-and-push:
