@@ -45,10 +45,15 @@ jobs:
           IMAGE="$ECR_REGISTRY/$ECR_REPOSITORY:$VERSION"
           sed -i "s|image: .*|image: $IMAGE|" manifest/deploy.yaml
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add manifest/deploy.yaml
-          git commit -m "Update image tag to $VERSION"
-          git push
+          git commit -m "Update image tag to $VERSION" || echo "No changes to commit"
+
+      - name: Push changes to GitHub
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
